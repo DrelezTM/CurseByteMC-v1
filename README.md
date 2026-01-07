@@ -33,7 +33,7 @@
 
 ## Configuration 🗝
 * [serverData.js](https://github.com/DrelezTM/CurseByteMC-v1/blob/main/src/serverData.js)
-  ```json
+  ```js
     export const serverData = {
         ip: "play.cursebyte.my.id",
         port: "19153",
@@ -46,22 +46,22 @@
             id: 1,
             title: "Chat & Komunikasi",
             rules: [
-            "Dilarang Spam Chat/Sticker!",
-            "Dilarang Memberi 18+ Vid/Pict/Stic!",
-            "Dilarang Rasis dan SARA!",
-            "Dilarang Toxic Berlebih!",
-            "Sider? Mending OUT!"
+                "Dilarang Spam Chat/Sticker!",
+                "Dilarang Memberi 18+ Vid/Pict/Stic!",
+                "Dilarang Rasis dan SARA!",
+                "Dilarang Toxic Berlebih!",
+                "Sider? Mending OUT!"
             ]
         },
         {
             id: 2,
             title: "Server & Gameplay",
             rules: [
-            "Dilarang Iklan Server & Realms!",
-            "Dilarang menggunakan Cheat/Hack!",
-            "Dilarang exploit Bug/Glitch!",
-            "Dilarang Griefing!",
-            "Melanggar? BAN PERMANENT!"
+                "Dilarang Iklan Server & Realms!",
+                "Dilarang menggunakan Cheat/Hack!",
+                "Dilarang exploit Bug/Glitch!",
+                "Dilarang Griefing!",
+                "Melanggar? BAN PERMANENT!"
             ]
         }
     ];
