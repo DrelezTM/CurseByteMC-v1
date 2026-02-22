@@ -5,7 +5,6 @@ import { serverData } from '../serverData';
 
 export const HeroSection = () => {
   const [ getServerInfo, setServerInfo ] = useState({});
-  const [ getPlayerInfo, setPlayerInfo ] = useState({});
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -21,7 +20,6 @@ export const HeroSection = () => {
       method: 'GET'
     }).then(({ data }) => {
       setServerInfo(data);
-      setPlayerInfo(data.players);
     }).catch((err) => { throw err });
   }, []);
 
@@ -58,7 +56,7 @@ export const HeroSection = () => {
 
           <div className="hero-stats">
             <div className="stat-item">
-              <div className="stat-value">{ getPlayerInfo.online ?? 0 }</div>
+              <div className="stat-value">{ getServerInfo.players?.online ?? 0 }</div>
               <div className="stat-label">Players Online</div>
             </div>
             <div className="stat-divider"></div>

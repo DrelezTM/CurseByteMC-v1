@@ -6,7 +6,6 @@ import axios from 'axios';
 export const ServerStatus = () => {
   const [copied, setCopied] = useState(false);
   const [ getServerInfo, setServerInfo ] = useState({});
-  const [ getMOTD, setMOTD ] = useState({});
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(serverData.ipport);
@@ -20,7 +19,6 @@ export const ServerStatus = () => {
       method: 'GET'
     }).then(({ data }) => {
       setServerInfo(data);
-      setMOTD(data.motd);
     }).catch((err) => { throw err });
   }, []);
 
@@ -34,14 +32,14 @@ export const ServerStatus = () => {
       <div className="status-grid">
         <div className="status-card main-status">
           <div className="status-indicator">
-            <div className={`status-dot ${getServerInfo.online ? 'online' : 'offline'}`}>
+            <div className={`status-dot ${ getServerInfo.online ? 'online' : 'offline' }`}>
               <span className="status-pulse"></span>
             </div>
             <div>
               <h3 className="status-title">
-                {getServerInfo.online ? 'Server Online' : 'Server Offline'}
+                { getServerInfo.online ? 'Server Online' : 'Server Offline' }
               </h3>
-              <p className="status-subtitle">{getMOTD.clean}</p>
+              <p className="status-subtitle">{ getServerInfo.motd?.clean }</p>
             </div>
           </div>
         </div>

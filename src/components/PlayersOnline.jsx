@@ -4,8 +4,7 @@ import { serverData } from '../serverData';
 import axios from 'axios';
 
 export const PlayersOnline = () => {
-  const [ getPlayerInfo, setPlayerInfo ] = useState({});
-  const [ getPlayerList, setPlayerList ] = useState([]);
+  const [ getServerInfo, setServerInfo ] = useState({});
 
   useEffect(() => {
     axios({
@@ -13,12 +12,11 @@ export const PlayersOnline = () => {
       method: 'GET'
     }).then(({ data }) => {
       console.log(data)
-      setPlayerInfo(data.players);
-      setPlayerList(data.players.list);
+      setServerInfo(data);
     }).catch((err) => { throw err });
   }, []);
 
-  const percentage = (getPlayerInfo.online / getPlayerInfo.max * 100).toFixed(0);
+  const percentage = (getServerInfo.players?.online / getServerInfo.players?.max * 100).toFixed(0);
 
   return (
     <section id="players" className="section-container">
@@ -30,19 +28,19 @@ export const PlayersOnline = () => {
       <div className="players-container">
         <div className="players-stats-card">
           <div className="players-count">
-            <span className="count-current">{ getPlayerInfo.online ?? 0 }</span>
+            <span className="count-current">{ getServerInfo.players?.online ?? 0 }</span>
             <span className="count-separator">/</span>
-            <span className="count-max">{ getPlayerInfo.max ?? 0 }</span>
+            <span className="count-max">{ getServerInfo.players?.max ?? 0 }</span>
           </div>
           <div className="players-label">Pemain Aktif</div>
           
           <div className="progress-bar">
             <div 
               className="progress-fill" 
-              style={{ width: `${percentage}%` }}
+              style={{ width: `${ !isNaN(percentage) ? percentage : 0 }%` }}
             ></div>
           </div>
-          <div className="progress-label">{percentage}% Kapasitas</div>
+          <div className="progress-label">{ !isNaN(percentage) ? percentage : 0 }% Kapasitas</div>
         </div>
 
         <div className="players-list-card">
@@ -52,7 +50,7 @@ export const PlayersOnline = () => {
           </h3>
           <div className="players-grid">
             {
-              getPlayerInfo.online !== 0 ? getPlayerList.map((player, index) => (
+              getServerInfo.online && getServerInfo.players?.online > 0 && Array.isArray(getServerInfo.players?.list) ? getServerInfo.players?.list?.map((player, index) => (
                 <div key={index} className="player-item">
                   <div className="player-avatar">
                     <img 
